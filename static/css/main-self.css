@@ -1,0 +1,33 @@
+.radio, .checkbox {
+    padding-left: 0px;
+    padding-right: 3px;
+}
+
+.controls label {
+    margin-right:20px;
+}
+
+/******** login page *********/
+.modal-dialog .modal-content .modal-header{
+    height:40px;
+}
+
+.alert {
+    border: 0px solid #f5c056 !important;
+    display: none;
+    color: #333 !important;
+}
+
+.login-box .alert {
+    width: 300px;
+    margin-left: 20px;
+    /*border: 0px solid #f5c056 !important;*/
+}
+
+.article .alert,
+.profile .alert {
+    width: 300px;
+    height: 22px;
+    margin-left: 120px;
+    font-size: 16px;
+}

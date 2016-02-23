@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>ZivSu blog</title>
+	<meta name="description" content="blog+python">
+	<meta name="author" content="ZivSu">
+	<meta name="keyword" content="python, blog, bootstrap, tornado">
+	<!-- end: Meta -->
+
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- end: Mobile Specific -->
+
+	<!-- start: CSS -->
+	<link id="bootstrap-style" href="{{static_url('css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{static_url('css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+	<link id="base-style" href="{{static_url('css/style.css')}}" rel="stylesheet">
+	<link id="base-style-responsive" href="{{static_url('css/style-responsive.css')}}" rel="stylesheet">
+	<link id="base-style-responsive" href="{{static_url('css/main-self.css')}}" rel="stylesheet">
+	<!-- end: CSS -->
+
+	<!-- start: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- end: Favicon -->
+
+	<style type="text/css">
+		body { background: url(/static/img/bg-login.jpg) !important; }
+	</style>
+</head>
+
+<body>
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+
+			<div class="row-fluid">
+				<div class="login-box">
+					<h2>Login to your account</h2>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="input-prepend" title="Username">
+								<span class="add-on">
+								<i class="halflings-icon user"></i>
+								</span>
+								<input class="input-large span10" name="email" id="email" type="text" placeholder="email"/>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="input-prepend" title="Password">
+								<span class="add-on"><i class="halflings-icon lock"></i></span>
+								<input class="input-large span10" name="password" id="password" type="password" placeholder="password"/>
+							</div>
+							<div class="alert alert-danger" id="login-alert" role="alert">
+							</div>
+							<div class="clearfix"></div>
+
+							<label class="remember" for="remember">
+							<input type="checkbox" id="remember" />Remember me</label>
+
+							<div class="button-login">
+								<button type="button" class="btn btn-primary" id="btn-login">Login</button>
+							</div>
+							<div class="clearfix"></div>
+							{% raw xsrf_form_html() %}
+						</fieldset>
+					</form>
+				</div><!--/span-->
+			</div><!--/row-->
+		</div><!--/.fluid-container-->
+	</div><!--/fluid-row-->
+
+	<!-- start: JavaScript-->
+
+	<script src="{{static_url('js/jquery-1.9.1.min.js')}}"></script>
+	<script src="{{static_url('js/jquery-migrate-1.0.0.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery-ui-1.10.0.custom.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.ui.touch-punch.js')}}"></script>
+
+	<script src="{{static_url('js/modernizr.js')}}"></script>
+
+	<script src="{{static_url('js/bootstrap.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.cookie.js')}}"></script>
+
+	<script src='{{static_url('js/fullcalendar.min.js')}}'></script>
+
+	<script src='{{static_url('js/jquery.dataTables.min.js')}}'></script>
+
+	<script src="{{static_url('js/excanvas.js')}}"></script>
+	<script src="{{static_url('js/jquery.flot.js')}}"></script>
+	<script src="{{static_url('js/jquery.flot.pie.js')}}"></script>
+	<script src="{{static_url('js/jquery.flot.stack.js')}}"></script>
+	<script src="{{static_url('js/jquery.flot.resize.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.chosen.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.uniform.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.cleditor.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.noty.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.elfinder.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.raty.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.iphone.toggle.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.uploadify-3.1.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.gritter.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.imagesloaded.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.masonry.min.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.knob.modified.js')}}"></script>
+
+	<script src="{{static_url('js/jquery.sparkline.min.js')}}"></script>
+
+	<script src="{{static_url('js/custom.js')}}"></script>
+
+	<script src="{{static_url('js/login.js')}}"></script>
+	<!-- end: JavaScript-->
+
+</body>
+</html>

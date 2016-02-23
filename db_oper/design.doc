@@ -1,0 +1,52 @@
+database collection design
+
+article:
+{
+    "title":"",
+    "Abstracts":"",
+    "content":"",
+    "slug":"",
+    "tags":"",
+    "status":"",
+    "create_date":"",
+    "update_date":"",
+    "conment":[
+        {"content":"", "create_timestamp":"", "email":""}
+    ]
+}
+
+user:
+{
+    "name":
+    "en_name":""
+    "password":
+    "salt":
+    "email":
+    "descript"：
+    "contact":{
+        "wechat":"",
+        "email":"",
+        "github":"",
+        "address":""
+    }
+}
+
+tags:
+{
+    name:[]
+}
+
+words board
+{
+    crate_timestamp:
+    content:
+    email:
+}
+
+
+stat article view
+{
+    ip:
+    article id:
+    timestamp:
+}

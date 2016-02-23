@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "head.html"%}
+<body>
+    {% include "header.html" %}
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+            {% include "menu.html" %}
+            <!-- start: Content -->
+            <div id="content" class="span10">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="index.html">首页</a>
+                    <i class="icon-angle-right"></i>
+                </li>
+                <li><a href="#">个人情况</a></li>
+            </ul>
+
+            <div class="row-fluid sortable">
+                <div class="box span12">
+                    <div class="box-header" data-original-title>
+                        <h2><i class="halflings-icon user"></i><span class="break"></span>个人情况</h2>
+                    </div>
+                    <div class="box-content profile">
+                        <form class="form-horizontal">
+                          <fieldset>
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">中文名字</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead"  value="{{user['name']}}" id="profile-name">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">英文名字</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead" value="{{user['en_name']}}" id="profile-en-name">
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">微信</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead" value="{{user['wechat']}}" id="profile-wechat">
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">github</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead" value="{{user['github']}}" id="profile-github">
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">email</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead"  value="{{user['email']}}" id="profile-email">
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">暂居</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead" value="{{user['address']}}" id="profile-address">
+                              </div>
+                            </div>
+
+                            <div class="control-group hidden-phone">
+                              <label class="control-label" for="textarea">描述</label>
+                              <div class="controls">
+                                <textarea name="content" data-provide="markdown" rows="5" id="profile-descript">{{user['descript']}}</textarea>
+                              </div>
+                            </div>
+                            <div class="alert alert-danger" id="profile-alert" role="alert">
+                            </div>
+                            <div class="form-actions">
+                              <button type="button" class="btn btn-primary" id="save-profile">Save changes</button>
+                              <button type="reset" class="btn" id="reset-profile">Cancel</button>
+                            </div>
+                            {% raw xsrf_form_html()   %}
+                          </fieldset>
+                        </form>
+                    </div>
+                </div><!--/span-->
+
+            </div><!--/row-->
+        </div><!--/#content.span10-->
+    </div><!--/fluid-row-->
+    <div class="clearfix"></div>
+    {% include "footer.html"%}
+    {% include "footerjs.html"%}
+    <script>
+        name = '{{user["name"]}}'
+        enName = '{{user["en_name"]}}'
+        email = '{{user["email"]}}'
+        wechat = '{{user["wechat"]}}'
+        github = '{{user["github"]}}'
+        address = '{{user["address"]}}'
+        descript = '{{user["descript"]}}'
+    </script>
+</body>
+</html>

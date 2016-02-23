@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "head.html" %}
+<body>
+	{% include "header.html" %}
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+			{% include "menu.html" %}
+			<!-- start: Content -->
+			<div id="content" class="span10">
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="index.html">首页</a>
+					<i class="icon-angle-right"></i>
+				</li>
+				<li>
+					<i class="icon-edit"></i>
+					<a href="#">编辑文章</a>
+				</li>
+			</ul>
+
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon edit"></i><span class="break"></span>文章详情</h2>
+
+					</div>
+					<div class="box-content article">
+						<form class="form-horizontal">
+						  <fieldset>
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">标题</label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="article-title" value="{{article['title']}}">
+							  </div>
+							</div>
+                            {#
+							<div class="control-group">
+							  <label class="control-label" for="date01">日期</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="article-date" value="">
+							  </div>
+							</div>
+                            #}
+                            <div class="control-group">
+                                <label class="control-label">标签</label>
+                                <div class="controls">
+                                    {% for tag in tags %}
+                                    <label class="radio">
+                                        <input type="radio" name="article-tag" value="{{tag}}" {% if tag == article['tag']%}checked{% end %}>
+                                        {{tag}}
+                                    </label>
+                                    {% end %}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="typeahead">Slug</label>
+                              <div class="controls">
+                                <input type="text" class="span6 typeahead" id="article-slug" value="{{article['slug']}}">
+                              </div>
+                            </div>
+                            <div class="control-group hidden-phone">
+                              <label class="control-label" for="textarea2">摘要</label>
+                              <div class="controls">
+                                <textarea name="content" data-provide="markdown" rows="5" id="article-abstracts">
+                                {{article['abstracts']}}
+                                </textarea>
+                              </div>
+                            </div>
+							<div class="control-group hidden-phone">
+							  <label class="control-label" for="textarea2">文章内容</label>
+							  <div class="controls">
+								<textarea name="content" data-provide="markdown" rows="10" id="article-content">
+                                {{article['content']}}
+                                </textarea>
+							  </div>
+							</div>
+                            <div class="alert alert-danger" id="article-alert" role="alert">
+                            </div>
+							<div class="form-actions">
+                            <button type="button" class="btn btn-primary" id="publish-article">Publish changes</button>
+                              <button type="button" class="btn btn-primary" id="save-article">Save changes</button>
+							  <button type="reset" class="btn">Cancel</button>
+							</div>
+                            {% raw xsrf_form_html() %}
+						  </fieldset>
+						</form>
+					</div>
+				</div><!--/span-->
+			</div><!--/row-->
+			</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
+	<div class="clearfix"></div>
+	{% include "footer.html"%}
+	{% include "footerjs.html"%}
+    <script>
+        article_id = "{{article_id}}"
+    </script>
+</body>
+</html>
