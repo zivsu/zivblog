@@ -23,6 +23,6 @@ def update_article(db, article):
 def get_article(db, slug):
     return db[COLL_ARTICLE].find_one({"slug":slug})
 
-def get_articles(db, tag=None, page=None， status=DEFAULT_STATUS,
+def get_articles(db, tag=None, page=None, status=DEFAULT_STATUS,
                 rows=DEFAULT_STATUS):
     pass
