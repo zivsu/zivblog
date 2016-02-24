@@ -11,7 +11,7 @@ from handlers import AdminHandler
 from models import user as m_user
 from models import article as m_article
 from models import tag as m_tag
-from settings import STATUS_PUBLIC, STATUS_SAVE
+from settings import STATUS_PUBLIC, STATUS_SAVE, DEFAULT_ROWS
 
 
 @route("/backend/index")
@@ -99,14 +99,26 @@ class AdminArticleEditHandler(AdminHandler):
             self.write({"err":True, "msg":u"操作失败！稍后再试"})
 
 
-
-
 @route("/backend/article_list")
 class AdminArticleListHandler(AdminHandler):
 
     def get(self):
+        page = self.get_argument("page", 1)
+        try:
+            page = int(page)
+        except:
+            logging.exception(">> page argument is not int")
+            # TODO 404.
+            page = 1
         username = self.current_username
-        self.render("backend/article_list.html", username=username)
+        articles = m_article.get_articles(self.db, page=page, rows=DEFAULT_ROWS)
+        page_amount = m_article.get_page_amount(self.db, rows=DEFAULT_ROWS)
+        self.render("backend/article_list.html",
+                    username=username,
+                    page_amount=page_amount,
+                    cur_page=page,
+                    articles=articles
+                    )
 
 @route("/backend/article_trash")
 class AdminArticleTrashHandler(AdminHandler):
@@ -116,11 +128,27 @@ class AdminArticleTrashHandler(AdminHandler):
         self.render("backend/article_trash.html", username=username)
 
 @route("/backend/article_detail")
+class AdminArticleDefaultDetailHandler(AdminHandler):
+
+    def get(self, slug):
+        self.redrect("/backend/article_detail/(.*)")
+
+@route("/backend/article_detail/(.*)")
 class AdminArticleDetailHandler(AdminHandler):
 
-    def get(self):
+    def get(self, slug):
+        logging.info("******** slug *********")
+        logging.info("slug:{}".format(slug))
+        article = m_article.get_article(self.db, slug)
+        if article is None:
+            # TODO 404.
+            pass
+
         username = self.current_username
-        self.render("backend/article_detail.html", username=username)
+        self.render("backend/article_detail.html",
+                    username=username,
+                    article=article
+                    )
 
 @route("/backend/profile")
 class AdminProfileHandler(AdminHandler):

@@ -33,6 +33,7 @@ class BaseHandler(tornado.web.RequestHandler):
         expires = datetime.datetime.now() + datetime.timedelta(seconds=expires_second)
         super(BaseHandler,self).set_secure_cookie(name, value, expires=expires)
 
+
 class AdminHandler(BaseHandler):
 
     @property
