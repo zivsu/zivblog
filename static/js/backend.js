@@ -104,3 +104,5 @@ function sendArticle(status){
 function handleArticleAjaxRespson(resp){
     alertErr($("#article-alert"), resp.msg);
 }
+
+/* -------- article list page -------- */

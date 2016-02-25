@@ -7,6 +7,18 @@
     margin-right:20px;
 }
 
+.pager li .current,
+.pager li a:hover{
+    background: #00A300;
+    color: #fff;
+}
+
+.pager .previous>a,
+.pager .next>a
+{
+    float: none;
+}
+
 /******** login page *********/
 .modal-dialog .modal-content .modal-header{
     height:40px;

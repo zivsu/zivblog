@@ -28,39 +28,56 @@
                           <thead>
                               <tr>
                                   <th>Title</th>
-                                  <th>Date registered</th>
-                                  <th>Role</th>
+                                  <th>Edit Date</th>
+                                  <th>Tag</th>
                                   <th>Status</th>
                                   <th>Actions</th>
                               </tr>
                           </thead>
                           <tbody>
+                            {% for article in articles %}
                             <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
+                                <td><a href="/backend/article_detail/{{article["slug"]}}">{{article["title"]}}</a></td>
+                                <td class="center">{{article["date"]}}</td>
+                                <td class="center">{{article["tag"]}}</td>
                                 <td class="center">
-                                    <span class="label label-success">Active</span>
+                                    <span class="label label-success">{{article['status']}}</span>
                                 </td>
                                 <td class="center">
-                                    <a class="btn btn-info" href="#">
+                                    <a class="btn btn-info" href="/backend/article_edit?slug={{article['slug']}}">
                                         <i class="halflings-icon white edit"></i>
                                     </a>
-                                    <a class="btn btn-danger" href="#">
+                                    <a class="btn btn-danger" href="/backend/article_edit?slug={{article['slug']}}">
                                         <i class="halflings-icon white trash"></i>
                                     </a>
                                 </td>
                             </tr>
+                            {% end %}
                           </tbody>
                       </table>
+                      <nav>
+                        <ul class="pager">
+                          <li class="{% if cur_page == 1 %}disabled{% end %}">
+                          <a href="#">Previous</a>
+                          </li>
+                          {% for page in range(1, page_amount+1) %}
+                          {% if page == cur_page %}
+                          <li><a href="?page={{page}}" class="current">{{page}}</a></li>
+                          {% else %}
+                          <li><a href="#">{{ page+1 }}</a></li>
+                          {% end %}
+                          {% end %}
+                          <li class="{% if cur_page == page_amount %}disabled{% end %}">
+                          <a href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
                     </div>
                 </div><!--/span-->
-
             </div><!--/row-->
         </div><!--/#content.span10-->
     </div><!--/fluid-row-->
     <div class="clearfix"></div>
-
     {% include "footer.html"%}
     {% include "footerjs.html"%}
     </body>
