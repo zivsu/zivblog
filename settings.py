@@ -34,4 +34,3 @@ INIT_TAGS = ["python", "java"]
 
 DEFAULT_ROWS = 10
 
-test = 1
