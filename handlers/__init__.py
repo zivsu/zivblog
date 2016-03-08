@@ -8,6 +8,7 @@ from tornado import httputil
 
 from models import session
 from models import user
+from models import article
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -33,6 +34,10 @@ class BaseHandler(tornado.web.RequestHandler):
         expires = datetime.datetime.now() + datetime.timedelta(seconds=expires_second)
         super(BaseHandler,self).set_secure_cookie(name, value, expires=expires)
 
+    # def write_error(self, status_code, **kwargs):
+    #     # TODO.
+    #     pass
+
 
 class AdminHandler(BaseHandler):
 
@@ -46,3 +51,10 @@ class AdminHandler(BaseHandler):
         return user.get("name", "")
 
 
+class FrontEndHandler(BaseHandler):
+
+    def get_sidebar_tags_stats(self):
+        return article.get_tags_stats(self.db)
+
+    def get_hot_articles(self, limit=5):
+        return article.get_hot_articles(self.db, limit)

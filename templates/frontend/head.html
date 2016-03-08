@@ -1,0 +1,39 @@
+<head>
+<title>Home</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+
+<link href="{{static_url('frontend/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all"/>
+<link href="{{static_url('frontend/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="{{static_url('frontend/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<!--//theme-style-->
+<!--fonts-->
+{#
+<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+#}
+<!--//fonts-->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="{{static_url('frontend/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('frontend/js/common.js')}}"></script>
+<script type="application/x-javascript">
+    addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    function hideURLbar(){ window.scrollTo(0,1); }
+</script>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $(".scroll").click(function(event){
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+        });
+    });
+</script>
+
+</head>

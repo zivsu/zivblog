@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+{% include "head.html"%}
+<body>
+	<div id="wrapper">
+	<!--header-->
+	{% include "header.html" %}
+	<!-- Page Content -->
+	<div class="main-content">
+		<div class="container">
+	        <div class="row">
+	            <!-- Blog Preview -->
+	            <div class="col-md-8 preview-container">
+	            	<div class="post-preview">
+	            	<h2 class="post-title">{{article["title"]}}</h2>
+	            	<p class="post-meta">Posted on {{article["date"]}} | tag is <a href="#">{{article["tag"]}}</a></p>
+	                <p class="post-description">{% raw article["content"] %}</p>
+	                </div>
+	                <hr>
+	            </div> <!-- end of Blog Preview -->
+
+	            <!-- Blog Sidebar Widgets Column -->
+	            {% include "sidebar.html" %}
+		    </div>
+		</div>
+	</div> <!-- end of main-content -->
+	<div class="show-sibebar icon-circle-arrow-right"></div>
+	<div class="back-to-top icon-circle-arrow-up"></div>
+	{% include "footer.html" %}
+	{% include "footerjs.html" %}
+	</div>
+</body>
+</html>

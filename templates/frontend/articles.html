@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+{% include "head.html"%}
+<body>
+	<div id="wrapper">
+	<!--header-->
+	{% include "header.html" %}
+	<!-- Page Content -->
+	<div class="main-content">
+		<div class="container">
+	        <div class="row">
+	            <!-- Blog Preview -->
+	            <div class="col-md-8 preview-container">
+	            	{% for article in articles %}
+	            	<div class="post-preview">
+		            	<h2 class="post-title">
+		                    <a href="/article/{{article["slug"]}}">{{article["title"]}}</a>
+		                </h2>
+		                <p class="post-meta">Posted on {{article["date"]}} | tag is <a href="#">{{article["tag"]}}</a></p>
+		                <p class="post-description">{{article["abstracts"]}}</p>
+		                <a href="/article/{{article["slug"]}}" class="post-more-link">Read More »</a>
+	                </div>
+	                <hr>
+	                {% end %}
+	                <!-- pagination -->
+	                <nav class="pagination">
+	                	{% if cur_page != 1 %}
+	                	<a class="extend prev"><i class="icon-angle-left"></i></a>
+	                	{% end %}
+	                	{% for page in range(1, page_amount+1) %}
+	                	{% if page != cur_page %}
+	                	<a class="page-number current" disabled="true">{{page}}</a>
+	                	{% else %}
+	                	<a class="page-number" href="/articles?page={{page}}&tag={{tag}}">{{page}}</a>
+	                	{% end %}
+	                	{% end %}
+	                	{#<span class="space">...</span>
+	                	<a class="page-number">6</a>#}
+	                	{% if cur_page != page_amount %}
+	                	<a class="extend next"><i class="icon-angle-right"></i></a>
+	                	{% end %}
+	                </nav>
+	            </div> <!-- end of Blog Preview -->
+
+	            <!-- Blog Sidebar Widgets Column -->
+	            {% include "sidebar.html" %}
+		    </div>
+		</div>
+	</div> <!-- end of main-content -->
+	<div class="show-sibebar icon-circle-arrow-right"></div>
+	<div class="back-to-top icon-circle-arrow-up"></div>
+	{% include "footer.html" %}
+	{% include "footerjs.html" %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<div class="col-md-4 sibebar-container">
+    <div class="recent-post">
+        <h4 class="category-title">Recent Post</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                    {% for hot_article in hot_articles %}
+                    <li><a href="/article/{{article["slug"]}}"><i class="icon-chevron-right"></i>{{hot_article["title"]}}</a>
+                    </li>
+                    {% end %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h4 class="category-title">Blog Categories</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                    {% for tag_stat in tags_stats %}
+                    <li><i class="icon-caret-right"></i><a href="/articles?tag={{tag_stat["name"]}}">{{tag_stat["name"]}}({{tag_stat["amount"]}})</a>
+                    </li>
+                    {% end %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="function">
+        <h4 class="function-title">Function</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <span><a href="#" class="icon-rss"><span>RSS</span></a></span>
+                <span><a href="https://github.com/zivsu" class="icon-github"><span>GitHub</span></a></span>
+                <span><a href="#" class="icon-facebook-sign"><span>Facebook</span></a></span>
+            </div>
+        </div>
+    </div>
+
+</div> <!-- end of sidebar -->

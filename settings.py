@@ -33,3 +33,5 @@ STATUS_DELETE = "2"
 INIT_TAGS = ["python", "java"]
 
 DEFAULT_ROWS = 10
+
+EMAIL = "test@test.com"

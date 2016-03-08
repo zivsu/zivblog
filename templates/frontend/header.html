@@ -1,0 +1,23 @@
+<div class="header">
+    <div class="container">
+        <div class="logo">
+            <!-- <a href="index.html"><img src="images/log.png" alt=""></a> -->
+            <a href="/home" class="logo-words">ZivSu's blog</a>
+        </div>
+        <div class="top-nav">
+            <ul>
+                <li><a href="/home" class="home">Home</a></li>
+                <li><a href="/articles" class="articles">Articles</a></li>
+                <li><a href="/about" class="about">About</a></li>
+            </ul>
+            <!--script-->
+            <script>
+                $("span.menu").click(function(){
+                    $(".top-nav ul").slideToggle(500, function(){
+                    });
+                });
+            </script>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

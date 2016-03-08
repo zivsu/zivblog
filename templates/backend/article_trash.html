@@ -28,29 +28,31 @@
                           <thead>
                               <tr>
                                   <th>Title</th>
-                                  <th>Date registered</th>
-                                  <th>Role</th>
+                                  <th>Edit Date</th>
+                                  <th>Tag</th>
                                   <th>Status</th>
                                   <th>Actions</th>
                               </tr>
                           </thead>
                           <tbody>
+                            {% for article in articles %}
                             <tr>
-                                <td>Dennis Ji</td>
-                                <td class="center">2012/01/01</td>
-                                <td class="center">Member</td>
+                                <td><a href="/backend/article_detail/{{article["slug"]}}">{{article["title"]}}</a></td>
+                                <td class="center">{{article["date"]}}</td>
+                                <td class="center">{{article["tag"]}}</td>
                                 <td class="center">
-                                    <span class="label label-success">Active</span>
+                                    <span class="label label-success">{{article['status']}}</span>
                                 </td>
                                 <td class="center">
-                                    <a class="btn btn-info" href="#">
+                                    <a class="btn btn-info" href="/backend/article_edit?slug={{article['slug']}}">
                                         <i class="halflings-icon white edit"></i>
                                     </a>
-                                    <a class="btn btn-danger" href="#">
+                                    <a class="btn btn-danger" href="/backend/article_edit?slug={{article['slug']}}">
                                         <i class="halflings-icon white trash"></i>
                                     </a>
                                 </td>
                             </tr>
+                            {% end %}
                           </tbody>
                       </table>
                     </div>

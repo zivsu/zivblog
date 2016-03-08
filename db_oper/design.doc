@@ -13,6 +13,9 @@ article:
     "conment":[
         {"content":"", "create_timestamp":"", "email":""}
     ]
+    stat:{
+        "pageview":""
+    }
 }
 
 user:

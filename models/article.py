@@ -18,6 +18,9 @@ def update_article(db, article):
     return db[COLL_ARTICLE].find_and_modify({"slug":slug}, {"$set":article},
                                             upsert=True, new=True)
 
+def add_pageview(db, slug):
+    db[COLL_ARTICLE].update({"slug":slug}, {"$inc":{"stat.pageview":1}}, w=1)
+
 def get_article(db, slug):
     return db[COLL_ARTICLE].find_one({"slug":slug})
 
@@ -41,6 +44,12 @@ def get_articles(db, tag=None, page=None, status=None, rows=0):
         articles.append(article)
     return articles
 
+def get_hot_articles(db, limit=5):
+    cursor = db[COLL_ARTICLE].find({}, {"slug":True, "title":True, "_id":False}) \
+                             .sort([("stat.pageview", -1), ("_id", -1)]) \
+                             .limit(limit)
+    return [article for article in cursor]
+
 def get_page_amount(db, rows, tag=None, status=None):
     article_amount = len(get_articles(db, tag=tag, status=status))
     if not isinstance(rows, int): return 0
@@ -53,3 +62,18 @@ def get_page_amount(db, rows, tag=None, status=None):
         # 1 / 5, 6 / 5
         page_amount = article_amount / rows + 1
     return page_amount
+
+def get_tags_stats(db):
+    pipeline = [
+        {
+            "$match":{"status":STATUS_PUBLIC}
+        },
+        {
+            "$project":{"tag":1}
+        },
+        {
+            "$group":{"_id":"$tag", "amount":{"$sum":1}}
+        }
+    ]
+    cursor = db[COLL_ARTICLE].aggregate(pipeline)
+    return [{"name":doc["_id"], "amount":doc["amount"]} for doc in cursor]

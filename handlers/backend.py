@@ -5,13 +5,14 @@ import logging
 
 from tornroutes import route
 from tornado.web import authenticated
+from tornado.web import HTTPError
 
 import utils
 from handlers import AdminHandler
 from models import user as m_user
 from models import article as m_article
 from models import tag as m_tag
-from settings import STATUS_PUBLIC, STATUS_SAVE, DEFAULT_ROWS
+from settings import STATUS_PUBLIC, STATUS_SAVE, STATUS_DELETE,  DEFAULT_ROWS
 
 
 @route("/backend/index")
@@ -108,8 +109,8 @@ class AdminArticleListHandler(AdminHandler):
             page = int(page)
         except:
             logging.exception(">> page argument is not int")
-            # TODO 404.
-            page = 1
+            raise httperror(404)
+
         username = self.current_username
         articles = m_article.get_articles(self.db, page=page, rows=DEFAULT_ROWS)
         page_amount = m_article.get_page_amount(self.db, rows=DEFAULT_ROWS)
@@ -120,18 +121,34 @@ class AdminArticleListHandler(AdminHandler):
                     articles=articles
                     )
 
+@route("/backend/article_delete")
+class AdminArticleDeleteHandler(AdminHandler):
+
+    def post(self):
+       slug = self.get_argument("slug", None)
+       if slug is None:
+            pass
+
 @route("/backend/article_trash")
 class AdminArticleTrashHandler(AdminHandler):
 
     def get(self):
+        page = self.get_argument("page", 1)
+        try:
+            page = int(page)
+        except:
+            logging.exception(">> page argument is not int")
+            raise httperror(404)
+
         username = self.current_username
-        self.render("backend/article_trash.html", username=username)
-
-@route("/backend/article_detail")
-class AdminArticleDefaultDetailHandler(AdminHandler):
-
-    def get(self, slug):
-        self.redrect("/backend/article_detail/(.*)")
+        articles = m_article.get_articles(self.db, page=page, rows=DEFAULT_ROWS, status=STATUS_DELETE)
+        page_amount = m_article.get_page_amount(self.db, rows=DEFAULT_ROWS)
+        self.render("backend/article_trash.html",
+                    username=username,
+                    page_amount=page_amount,
+                    cur_page=page,
+                    articles=articles
+                    )
 
 @route("/backend/article_detail/(.*)")
 class AdminArticleDetailHandler(AdminHandler):
@@ -141,8 +158,7 @@ class AdminArticleDetailHandler(AdminHandler):
         logging.info("slug:{}".format(slug))
         article = m_article.get_article(self.db, slug)
         if article is None:
-            # TODO 404.
-            pass
+            raise HTTPError(404)
 
         username = self.current_username
         self.render("backend/article_detail.html",

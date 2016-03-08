@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+{% include "head.html"%}
+<body>
+	<div id="wrapper">
+	<!--header-->
+	{% include "header.html" %}
+	<!-- Page Content -->
+	<div class="main-content">
+		<div class="container">
+	        <div class="row">
+	            <!-- about-me -->
+	            <div class="col-md-8 about-me center">
+	            	<h2>Name</h2>
+	            	<p>CN: {{user["name"]}} | EN: {{user["en_name"]}}</p>
+	            	<hr>
+	            	<h2>Who I Am?</h2>
+	            	<p>
+	            		{% raw user["descript"] %}
+	            	</p>
+	            	<h2>Contact</h2>
+	            	<p>
+	            	微信: {{user["wechat"]}}
+	            	<br/>
+	            	github: <a href="">{{user["github"]}}</a>
+	            	<br/>
+	            	email: {{user["email"]}}
+	            	<br/>
+	            	暂居: {{user["address"]}}
+	            	</p>
+	            </div> <!-- end of about-me -->
+		    </div>
+		</div>
+	</div> <!-- end of main-content -->
+	<div class="show-sibebar icon-circle-arrow-right"></div>
+	<div class="back-to-top icon-circle-arrow-up"></div>
+	{% include "footer.html" %}
+	{% include "footerjs.html" %}
+	</div>
+</body>
+</html>
