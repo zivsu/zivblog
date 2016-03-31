@@ -1,0 +1,5 @@
+git+git://github.com/nod/tornroutes.git#egg=tornroutes
+pytest
+tornado==4.3.0
+pymongo
+markdown2
