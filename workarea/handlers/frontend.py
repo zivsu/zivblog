@@ -84,7 +84,7 @@ class AboutHandler(FrontEndHandler):
                 "name": user["name"],
                 "en_name": user["en_name"],
                 "descript": user["descript"],
-                "email": contact["email"],
+                "email": contact.get("email", ""),
                 "wechat": contact.get("wechat", ""),
                 "github": contact.get("github", ""),
                 "address": contact.get("address", ""),
