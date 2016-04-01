@@ -3,6 +3,7 @@
 
 import logging
 
+from models import tag as m_tag
 from settings import STATUS_SAVE, STATUS_PUBLIC, STATUS_DELETE
 
 COLL_ARTICLE = "article"
@@ -64,6 +65,16 @@ def get_page_amount(db, rows, tag=None, status=None):
     return page_amount
 
 def get_tags_stats(db):
+    def replace_default_amount(default_tags_stats, tag_name, amount):
+        has_replace = False
+        for tag_stat in default_tags_stats:
+            if tag_stat["name"] == tag_name:
+                tag_stat["amount"] = amount
+                has_replace = True
+                break
+        if not has_replace:
+            default_tags_stats.insert(0, {"name":tag_name, "amount":amount})
+
     pipeline = [
         {
             "$match":{"status":STATUS_PUBLIC}
@@ -76,4 +87,9 @@ def get_tags_stats(db):
         }
     ]
     cursor = db[COLL_ARTICLE].aggregate(pipeline)
-    return [{"name":doc["_id"], "amount":doc["amount"]} for doc in cursor]
+    tags = m_tag.get_tags(db)
+    # Set dufault stat.
+    default_result = [{"name": tag_name, "amount":0} for tag_name in tags]
+    for doc in cursor:
+        replace_default_amount(default_result, doc["_id"], doc["amount"])
+    return default_result
