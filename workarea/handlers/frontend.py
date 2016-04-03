@@ -50,7 +50,6 @@ class ArticleHandler(FrontEndHandler):
         if article is None:
             raise HTTPError(404)
 
-        logging.info("article:{}".format(article))
         m_article.add_pageview(self.db, slug)
         article["content"] = markdown2.markdown(article["content"])
         tags_stats = self.get_sidebar_tags_stats()
