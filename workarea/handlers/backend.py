@@ -124,10 +124,11 @@ class AdminArticleListHandler(AdminHandler):
 @route("/backend/article_delete")
 class AdminArticleDeleteHandler(AdminHandler):
 
-    def post(self):
-       slug = self.get_argument("slug", None)
-       if slug is None:
-            pass
+    def get(self):
+        slug = self.get_argument("slug", None)
+        if slug is not None:
+            m_article.delete_article(self.db, slug)
+        self.redirect("/backend/article_list")
 
 @route("/backend/article_trash")
 class AdminArticleTrashHandler(AdminHandler):

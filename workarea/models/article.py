@@ -22,6 +22,10 @@ def update_article(db, article):
 def add_pageview(db, slug):
     db[COLL_ARTICLE].update({"slug":slug}, {"$inc":{"stat.pageview":1}}, w=1)
 
+def delete_article(db, slug):
+    delete_result = db[COLL_ARTICLE].delete_one({"slug":slug})
+    return False if delete_result.deleted_count == 0 else True
+
 def get_article(db, slug):
     return db[COLL_ARTICLE].find_one({"slug":slug})
 
