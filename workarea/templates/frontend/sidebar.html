@@ -5,7 +5,7 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     {% for hot_article in hot_articles %}
-                    <li><a href="/article/{{article["slug"]}}"><i class="icon-chevron-right"></i>{{hot_article["title"]}}</a>
+                    <li><a href="/article/{{hot_article["slug"]}}"><i class="icon-chevron-right"></i>{{hot_article["title"]}}</a>
                     </li>
                     {% end %}
                 </ul>
