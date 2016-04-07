@@ -4,7 +4,6 @@
 import logging
 
 import markdown2
-from tornroutes import route
 from tornado.web import HTTPError
 
 from handlers import FrontEndHandler
@@ -12,7 +11,7 @@ from settings import EMAIL
 from models import user as m_user
 from models import article as m_article
 from settings import STATUS_PUBLIC
-
+from common.route import route
 
 @route("/articles")
 class ArticlesHandler(FrontEndHandler):

@@ -7,7 +7,7 @@ import logging
 import tornado.web
 import tornado.ioloop
 from tornado.options import define, options
-from tornroutes import route
+from common.route import route
 
 import urls
 import settings

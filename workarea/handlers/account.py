@@ -3,11 +3,10 @@
 
 import logging
 
-from tornroutes import route
-
 from models import user
 from models import session
 from handlers import BaseHandler
+from common.route import route
 
 @route("/login")
 class LoginHandler(BaseHandler):
