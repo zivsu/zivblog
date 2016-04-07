@@ -3,7 +3,6 @@
 
 import logging
 
-from tornroutes import route
 from tornado.web import authenticated
 from tornado.web import HTTPError
 
@@ -13,6 +12,7 @@ from models import user as m_user
 from models import article as m_article
 from models import tag as m_tag
 from settings import STATUS_PUBLIC, STATUS_SAVE, STATUS_DELETE,  DEFAULT_ROWS
+from common.route import route
 
 
 @route("/backend/index")
