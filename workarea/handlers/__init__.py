@@ -9,6 +9,8 @@ from tornado import httputil
 from models import session
 from models import user
 from models import article
+from models import track
+import utils
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -58,3 +60,18 @@ class FrontEndHandler(BaseHandler):
 
     def get_hot_articles(self, limit=5):
         return article.get_hot_articles(self.db, limit)
+
+    def track_pageview(self):
+        user_agent = self.request.headers.get("User-Agent", None)
+        uri = self.request.uri
+        view_info = {
+            "ip":self.request.remote_ip,
+            "useragent":user_agent,
+            "timestamp":utils.get_cur_utc_timestamp(),
+            "uri":uri
+        }
+        track.save_pageview(self.db, view_info)
+
+    def prepare(self):
+        # track pageview
+        self.track_pageview()
