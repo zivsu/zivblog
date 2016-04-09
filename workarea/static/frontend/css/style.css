@@ -263,6 +263,10 @@ a:focus {
   /*margin-bottom: 10px;*/
 }
 
+.post-preview > .post-title > a{
+  color:#000;
+}
+
 .post-preview > .post-meta {
 	color: #999;
 	margin-top: 5px;
