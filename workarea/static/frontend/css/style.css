@@ -248,8 +248,8 @@ a:focus {
 	margin-bottom:35px;
 }
 
-.post-preview > a {
-  	color: #404040;
+.post-preview a {
+    color: #286AB2;
 }
 
 .post-preview > a:hover {
@@ -279,11 +279,15 @@ a:focus {
 	border-bottom: 1px solid #E74C3C;
 }
 
-.post-preview > .post-description {
+.post-preview > .post-description > p{
     font-family: Lato,"PingFang SC","Microsoft YaHei",sans-serif;
     font-size: 15px;
     line-height: 2;
     color: #555;
+}
+
+.post-preview > .post-description > ul{
+    padding-left: 25px;
 }
 
 .post-preview > .post-more-link {}
