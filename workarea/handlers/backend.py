@@ -27,6 +27,7 @@ class AdminIndexHandler(AdminHandler):
 @route("/backend/article_edit")
 class AdminArticleEditHandler(AdminHandler):
 
+    @authenticated
     def get(self):
         slug = self.get_argument("slug", None)
         tags = m_tag.get_tags(self.db)
@@ -103,6 +104,7 @@ class AdminArticleEditHandler(AdminHandler):
 @route("/backend/article_list")
 class AdminArticleListHandler(AdminHandler):
 
+    @authenticated
     def get(self):
         page = self.get_argument("page", 1)
         try:
@@ -124,6 +126,7 @@ class AdminArticleListHandler(AdminHandler):
 @route("/backend/article_delete")
 class AdminArticleDeleteHandler(AdminHandler):
 
+    @authenticated
     def get(self):
         slug = self.get_argument("slug", None)
         if slug is not None:
@@ -133,6 +136,7 @@ class AdminArticleDeleteHandler(AdminHandler):
 @route("/backend/article_trash")
 class AdminArticleTrashHandler(AdminHandler):
 
+    @authenticated
     def get(self):
         page = self.get_argument("page", 1)
         try:
@@ -154,6 +158,7 @@ class AdminArticleTrashHandler(AdminHandler):
 @route("/backend/article_detail/(.*)")
 class AdminArticleDetailHandler(AdminHandler):
 
+    @authenticated
     def get(self, slug):
         logging.info("******** slug *********")
         logging.info("slug:{}".format(slug))
