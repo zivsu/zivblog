@@ -61,6 +61,9 @@ class FrontEndHandler(BaseHandler):
     def get_hot_articles(self, limit=5):
         return article.get_hot_articles(self.db, limit)
 
+    def get_visitor_num(self):
+        return track.get_visitor_num(self.db)
+
     def track_pageview(self):
         user_agent = self.request.headers.get("User-Agent", None)
         uri = self.request.uri

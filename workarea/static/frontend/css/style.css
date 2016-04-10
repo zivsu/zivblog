@@ -219,6 +219,15 @@ a:focus {
     cursor: pointer;
 }
 
+.visitor {
+    float: right;
+}
+
+.visitor-num {
+    font-weight:bold;
+    color: #fff;
+}
+
 .show-sibebar {
 	position: fixed;
     bottom: 126px;

@@ -30,6 +30,7 @@ class ArticlesHandler(FrontEndHandler):
                                                 rows=5)
         tags_stats = self.get_sidebar_tags_stats()
         hot_articles = self.get_hot_articles()
+        visitor_num = self.get_visitor_num()
 
         self.render("frontend/articles.html",
                     web_page="articles",
@@ -38,7 +39,8 @@ class ArticlesHandler(FrontEndHandler):
                     cur_page=page,
                     tags_stats=tags_stats,
                     tag=tag,
-                    hot_articles=hot_articles
+                    hot_articles=hot_articles,
+                    visitor_num=visitor_num
                    )
 
 @route("/article/(.*)")
@@ -53,12 +55,14 @@ class ArticleHandler(FrontEndHandler):
         article["content"] = markdown2.markdown(article["content"])
         tags_stats = self.get_sidebar_tags_stats()
         hot_articles = self.get_hot_articles()
+        visitor_num = self.get_visitor_num()
 
         self.render("frontend/article.html",
                     web_page="articles",
                     article=article,
                     tags_stats=tags_stats,
-                    hot_articles=hot_articles
+                    hot_articles=hot_articles,
+                    visitor_num=visitor_num
                    )
 
 @route("/about")
@@ -87,15 +91,19 @@ class AboutHandler(FrontEndHandler):
                 "github": contact.get("github", ""),
                 "address": contact.get("address", ""),
             }
+        visitor_num = self.get_visitor_num()
         self.render("frontend/about.html",
                     web_page="about",
-                    user=user
+                    user=user,
+                    visitor_num=visitor_num
                    )
 
 @route("/(.*)")
 class HomeHandler(FrontEndHandler):
 
     def get(self, _):
+        visitor_num = self.get_visitor_num()
         self.render("frontend/index.html",
-                    web_page="home"
+                    web_page="home",
+                    visitor_num=visitor_num
                    )
