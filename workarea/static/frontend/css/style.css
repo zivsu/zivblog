@@ -143,6 +143,9 @@ a:focus {
         background-color: #555;
         border-radius: 1px;
     }
+    .menu ul li a:hover{
+        color: #fff;
+    }
 }
 
 
