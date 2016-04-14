@@ -194,6 +194,15 @@ a:focus {
     color: #fff;
     cursor: pointer;
 }
+@media(max-width:768px){
+    .mobile-hide{
+        display: none;
+    }
+}
+
+.mobile-hide{
+        display: none;
+    }
 
 /****** main-content *****/
 .main-content {
@@ -440,6 +449,7 @@ a:focus {
         margin-left: 8px;
         margin-right: 8px;
     }
+
 }
 
 
