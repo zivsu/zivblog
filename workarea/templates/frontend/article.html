@@ -13,13 +13,57 @@
 	            <!-- Blog Preview -->
 	            <div class="col-md-8 preview-container">
 	            	<div class="post-preview">
-	            	<h2 class="post-title">{{article["title"]}}</h2>
-	            	<p class="post-meta">Posted on {{article["date"]}} | tag is <a href="#">{{article["tag"]}}</a></p>
-	                <div class="post-description">{% raw article["content"] %}</div>
+	            		<h2 class="post-title">{{article["title"]}}</h2>
+	            		<p class="post-meta">Posted on {{article["date"]}} | tag is <a href="#">{{article["tag"]}}</a></p>
+	                	<div class="post-description">{% raw article["content"] %}</div>
 	                </div>
-	                <hr>
+	                <div class="post-comment-section">
+	                	<div class="comment-section-header">共<strong><span id="comment-num">{{len(comments)}}</span></strong>评论
+	                	<div class="clearfix"></div>
+	                	</div>
+	                	{% if not comments %}
+	                	<div class="no-comment">暂无评论，快来抢占沙发！！！</div>
+	                	{% else %}
+	                	{% for comment in comments %}
+	                	<div class="comment">
+	                		<div class="avatar">
+	                			<img src="{{comment['headimgurl']}}" alt="avatar">
+	                		</div>
+	                		<div class="main">
+	                			<p><span>{{comment['username']}}</span></p>
+	                			<div class="content">{{comment['content']}}</div>
+	                			<div class="other">{{comment['datetime']}}</div>
+	                		</div>
+	                	</div>
+	                	{% end %}
+	                	{% end %}
+	                	<div class="clearfix"></div>
+	                </div>
+	                <div class="edit-comment-section">
+	                	<form>
+	                	<div class="edit-main">
+	                		<div class="form-group">
+	            				<textarea class="form-control" rows="3" cols="50" placeholder="Your comments" id="comment-content"></textarea>
+	        				</div>
+	        				<div>
+		        				<div class="input-group edit-username">
+	  								<input type="text" class="form-control" placeholder="Your username" id="comment-username">
+								</div>
+					            <div class="form-group">
+					                <button type="button" class="btn btn-default add" id="comment-add" data-slug="{{article['slug']}}">Add</button>
+					            </div>
+					            <div class="clearfix"></div>
+				            </div>
+				            <div class="alert alert-danger" id="comment-alert" role="alert">
+							</div>
+				            <div class="clearfix"></div>
+			            </div>
+			            {% raw xsrf_form_html() %}
+			            </form>
+			            <div class="clearfix"></div>
+                	</div>
+	                <!-- <div class="clearfix"></div> -->
 	            </div> <!-- end of Blog Preview -->
-
 	            <!-- Blog Sidebar Widgets Column -->
 	            {% include "sidebar.html" %}
 		    </div>
@@ -30,5 +74,8 @@
 	{% include "footer.html" %}
 	{% include "footerjs.html" %}
 	</div>
+	<script>
+		var commentNum = {{len(comments)}}
+	</script>
 </body>
 </html>

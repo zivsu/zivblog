@@ -7,6 +7,11 @@ import hashlib
 import datetime
 import calendar
 
+from pytz import timezone
+# import pytz.utc as utc
+from pytz import utc
+
+
 FORMAT = "%Y-%m-%d"
 
 def generate_cookie_secret():
@@ -27,6 +32,13 @@ def get_cur_utc_timestamp():
 
 def get_today_date():
     return datetime.date.today().strftime(FORMAT)
+
+
+def utc_timestamp_to_hk_datetime(timestamp):
+    utc_dt = utc.localize(datetime.datetime.utcfromtimestamp(timestamp))
+    hk_tz = timezone("Asia/Hong_Kong")
+    hk_dt = hk_tz.normalize(utc_dt.astimezone(hk_tz))
+    return hk_dt
 
 if __name__ == '__main__':
     cookie_secret = generate_cookie_secret()

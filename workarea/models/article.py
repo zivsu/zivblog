@@ -97,3 +97,9 @@ def get_tags_stats(db):
     for doc in cursor:
         replace_default_amount(default_result, doc["_id"], doc["amount"])
     return default_result
+
+def get_article_id(db, slug):
+    doc = db[COLL_ARTICLE].find_one({"slug":slug}, {"_id":True})
+    if doc is None:
+        return None
+    return str(doc["_id"])

@@ -48,6 +48,10 @@ a:focus {
     margin-right: auto;
 }
 
+.clearfix {
+    clear: both;
+}
+
 /********** head ********/
 .header {
 	padding: 1.5em 0;
@@ -269,6 +273,97 @@ a:focus {
 }
 
 .post-preview > .post-more-link {}
+
+
+.post-comment-section {
+    border-top: 2px solid #d9d9d9;
+    padding: 5px;
+}
+
+.post-comment-section .no-comment{
+    padding: 40px 0px 20px 0px;
+    text-align: center;
+}
+
+.post-comment-section .comment-section-header{
+    float: right;
+    color: #d32;
+    width: 100%;
+    text-align: right;
+}
+
+.post-comment-section .comment {
+    padding: 5px;
+    float: left;
+    width: 100%;
+
+}
+.post-comment-section .comment .avatar {
+    float: left;
+}
+.post-comment-section .comment .avatar img {
+    height: 50px;
+    border-radius: 5px;
+}
+
+.post-comment-section .comment .main {
+    float: left;
+    margin-left: 15px;
+    width: 80%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.post-comment-section .comment .main span{
+    font-size: 20px;
+    color: #d32 !important;
+}
+.post-comment-section .comment .main .content{
+    margin-top: 4px;
+    background: #f7f7f7;
+    padding: 12px;
+}
+
+.post-comment-section .comment .main .other{
+    margin-top: 8px;
+    float: right;
+}
+
+.edit-comment-section {
+    margin-top: 20px;
+}
+
+.edit-comment-section .edit-main {
+    width: 77%;
+    margin-left: 75px;
+}
+
+.edit-comment-section .form-group {
+    /*margin-left: 10%;*/
+}
+
+.edit-comment-section .form-group .form-control{
+    /*width: auto;*/
+}
+
+.edit-comment-section .edit-username{
+    float: left;
+}
+
+.edit-comment-section .edit-username .form-control{
+    border-radius: 6px;
+}
+
+.edit-comment-section .form-group .add{
+    float:right;
+}
+
+.edit-comment-section .alert {
+    float: left;
+    margin-top: 12px;
+    width: 100%;
+    height: 50px;
+    display: none;
+}
 
 /****** recent post ******/
 .recent-post {
