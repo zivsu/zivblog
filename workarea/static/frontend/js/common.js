@@ -52,8 +52,8 @@ $(document).ready(function() {
                             "</div>" +
                         "</div>";
                     $(".comment-section-header").after(node);
-                    $("#comment-content").val() = "";
-                    $("#comment-username").val() = "";
+                    $("#comment-content").val("");
+                    $("#comment-username").val("");
                 }
             },
             error:function(resp){
