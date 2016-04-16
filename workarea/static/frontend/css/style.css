@@ -110,21 +110,22 @@ a:focus {
         padding-top: 6px;
         padding-bottom: 6px;
     }
-    .menu li:hover{
-        color: #fff;
-        background: #555;
-        border-radius: 4px;
-    }
     .logo {
         height: 50px;
         margin-top: 25px;
         margin-left: 50px;
     }
     .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    color: #fff;
-    background-color: #555;
-    border-radius: 4px;
+        color: #fff;
+        background-color: #555;
+        border-radius: 4px;
+    }
 }
+
+.menu li:hover{
+    color: #fff;
+    background: #555;
+    border-radius: 4px;
 }
 
 .menu li a{
