@@ -15,6 +15,9 @@ from settings import STATUS_PUBLIC
 from common.route import route
 
 DEFAULT_HEADIMGURL = "/static/frontend/images/default-avatar.png"
+HOME_TITLE = "ZivSu's Blog"
+ARTICLES_TITLE = "Articles | ZivSu's Blog"
+ABOUT_TITLE = "About Me | ZivSu's Blog"
 
 @route("/articles")
 class ArticlesHandler(FrontEndHandler):
@@ -36,14 +39,14 @@ class ArticlesHandler(FrontEndHandler):
         visitor_num = self.get_visitor_num()
 
         self.render("frontend/articles.html",
-                    web_page="articles",
                     articles=articles,
                     page_amount=page_amount,
                     cur_page=page,
                     tags_stats=tags_stats,
                     tag=tag,
                     hot_articles=hot_articles,
-                    visitor_num=visitor_num
+                    visitor_num=visitor_num,
+                    title=ARTICLES_TITLE
                    )
 
 @route("/article/(.*)")
@@ -66,12 +69,12 @@ class ArticleHandler(FrontEndHandler):
 
 
         self.render("frontend/article.html",
-                    web_page="articles",
                     article=article,
                     comments=comments,
                     tags_stats=tags_stats,
                     hot_articles=hot_articles,
-                    visitor_num=visitor_num
+                    visitor_num=visitor_num,
+                    title=ARTICLES_TITLE
                    )
 
 @route("/about")
@@ -102,9 +105,9 @@ class AboutHandler(FrontEndHandler):
             }
         visitor_num = self.get_visitor_num()
         self.render("frontend/about.html",
-                    web_page="about",
                     user=user,
-                    visitor_num=visitor_num
+                    visitor_num=visitor_num,
+                    title=ABOUT_TITLE
                    )
 
 @route("/add/comment")
@@ -132,8 +135,8 @@ class AddCommentHandler(FrontEndHandler):
         else:
             self.write({"err":True, "msg":u"无效的请求"})
 
-    def get(self):
-        self.post()
+    # def get(self):
+    #     self.post()
 
 
 @route("/(.*)")
@@ -142,6 +145,6 @@ class HomeHandler(FrontEndHandler):
     def get(self, _):
         visitor_num = self.get_visitor_num()
         self.render("frontend/index.html",
-                    web_page="home",
-                    visitor_num=visitor_num
+                    visitor_num=visitor_num,
+                    title=HOME_TITLE
                    )

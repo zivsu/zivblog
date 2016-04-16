@@ -110,6 +110,11 @@ a:focus {
         padding-top: 6px;
         padding-bottom: 6px;
     }
+    .menu li:hover{
+        color: #fff;
+        background: #555;
+        border-radius: 4px;
+    }
     .logo {
         height: 50px;
         margin-top: 25px;
