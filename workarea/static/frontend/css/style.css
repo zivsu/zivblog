@@ -233,14 +233,19 @@ a:focus {
 }
 
 .post-preview a {
-    color: #286AB2;
+    /*color: #286AB2;*/
 }
 
-.post-preview > a:hover {
-  	color: #E74C3C;
+.post-preview .post-meta a:hover {
+  	color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #222;
+}
+
+.post-preview a:hover {
+    color: #E74C3C;
     text-decoration: underline;
 }
-
 .post-preview > .post-title {
   font-size: 30px;
   margin: 15px 0;
@@ -263,9 +268,9 @@ a:focus {
 	border-bottom: 1px solid #999;
 }
 
-.post-preview > .post-meta > a:hover{
+/*.post-preview > .post-meta > a:hover{
 	border-bottom: 1px solid #E74C3C;
-}
+}*/
 
 .post-preview > .post-description > p{
     font-family: Lato,"PingFang SC","Microsoft YaHei",sans-serif;
