@@ -19,7 +19,7 @@
             <!-- <div class="col-lg-6"> -->
                 <ul class="list-unstyled">
                     {% for tag_stat in tags_stats %}
-                    <li><i class="icon-tag"></i><a href="/articles?tag={{tag_stat["name"]}}">{{tag_stat["name"]}}<span>{{tag_stat["amount"]}}</span></a>
+                    <li><a href="/articles?tag={{tag_stat["name"]}}"><i class="icon-tag"></i>{{tag_stat["name"]}}<span>{{tag_stat["amount"]}}</span></a>
                     </li>
                     {% end %}
                 </ul>
