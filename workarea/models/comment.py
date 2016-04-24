@@ -26,7 +26,8 @@ def add_one_comment(db, slug, comment):
 def get_comments(db, article_id):
     article_id = str(article_id)
     cursor = db[COLL_COMMENTS].find({"article_id":article_id}, {"content":True,
-                        "username":True, "headimgurl":True, "datetime":True})
+                                     "username":True, "headimgurl":True,
+                                     "datetime":True}).sort([("_id", -1)])
     comments = []
     for doc in cursor:
         prepared = {
