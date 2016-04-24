@@ -391,7 +391,7 @@ a:focus {
     margin-bottom: 22px;
     color: #66B0DA;
     width: 100%;
-    border-bottom: 1px dotted #d9d9d9;
+    border-bottom: 2px dotted #d9d9d9;
 }
 
 .recent-post ul {
@@ -438,7 +438,7 @@ a:focus {
     font-size: 24px;
     margin-bottom: 22px;
     color: #66B0DA;
-    border-bottom: 1px dotted #d9d9d9;
+    border-bottom: 2px dotted #d9d9d9;
 }
 
 .category ul {
@@ -494,7 +494,7 @@ a:focus {
     font-size: 24px;
     margin-bottom: 22px;
     color: #66B0DA;
-    border-bottom: 1px dotted #d9d9d9;
+    border-bottom: 2px dotted #d9d9d9;
 }
 .function span {
 	margin-bottom:10px;
