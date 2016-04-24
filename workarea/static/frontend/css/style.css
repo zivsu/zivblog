@@ -333,6 +333,7 @@ a:focus {
     margin-top: 4px;
     background: #f7f7f7;
     padding: 12px;
+    word-wrap: break-word;
 }
 
 .post-comment-section .comment .main .other{
