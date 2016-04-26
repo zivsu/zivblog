@@ -44,6 +44,9 @@ $(document).ready(function() {
                 success: function(resp){
                     if (resp.err) {
                         alertErr($("#comment-alert"), resp.msg);
+                        if (resp.refresh) {
+                            getValidateCode();
+                        }
                     } else{
                         $(".no-comment").hide();
                         commentNum += 1;
