@@ -134,13 +134,13 @@ class AddCommentHandler(FrontEndHandler):
 
         code_id = self.get_secure_cookie("codeid", None)
         if code_id is None:
-            return self.write({"err":True, "msg":u"验证码过期"})
+            return self.write({"err":True, "msg":u"无效的请求"})
 
         session = m_session.query_code(self.db, code_id)
         logging.info("session:{}".format(session))
         if session is None:
             logging.info("session expired")
-            return self.write({"err":True, "msg":u"无效的请求", "refresh":True})
+            return self.write({"err":True, "msg":u"验证码过期", "refresh":True})
 
         if session["code"] != validate_code:
             return self.write({"err":True, "msg":u"验证码错误"})
