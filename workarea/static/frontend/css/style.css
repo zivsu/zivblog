@@ -381,6 +381,43 @@ a:focus {
     display: none;
 }
 
+.edit-comment-section .username {
+    width: 100%;
+}
+
+.edit-comment-section .verify {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.edit-comment-section .verify img{
+    width: 120px;
+    height: 34px;
+    border-radius: 6px;
+    float: left;
+    margin-left: 5px;
+}
+
+.edit-comment-section .verify input{
+    width: 143px;
+    float: left;
+}
+
+.edit-comment-section .verify i{
+    float: left;
+    font-size: 20px;
+    margin-left: 9px;
+    margin-top: 7px;
+}
+
+@media(max-width:768px){
+    .edit-comment-section .verify i{
+        font-size: 10px;
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+}
+
 /****** recent post ******/
 .recent-post {
 	margin-top:60px;

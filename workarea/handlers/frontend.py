@@ -2,17 +2,22 @@
 # coding:utf-8
 
 import logging
+from StringIO import StringIO
+import base64
 
 import markdown2
 from tornado.web import HTTPError
 
+import utils
 from handlers import FrontEndHandler
 from settings import EMAIL
+from settings import STATUS_PUBLIC
+from common.route import route
+
 from models import user as m_user
 from models import article as m_article
 from models import comment as m_comment
-from settings import STATUS_PUBLIC
-from common.route import route
+from models import session as m_session
 
 DEFAULT_HEADIMGURL = "/static/frontend/images/default-avatar.png"
 HOME_TITLE = "ZivSu's Blog"
@@ -117,12 +122,28 @@ class AddCommentHandler(FrontEndHandler):
         slug = self.get_argument("slug", None)
         content = self.get_argument("content", "")
         username = self.get_argument("username", "")
+        validate_code = self.get_argument("code", "")
         if username == "":
             return self.write({"err":True, "msg":u"用户名不能为空"})
         if content == "" :
             return self.write({"err":True, "msg":u"评论的内容不能为空"})
+        if validate_code == "":
+            return self.write({"err":True, "msg":u"验证码不能为空"})
         if slug is None:
             return self.write({"err":True, "msg":u"无效的请求"})
+
+        code_id = self.get_secure_cookie("codeid", None)
+        if code_id is None:
+            return self.write({"err":True, "msg":u"无效的请求"})
+
+        session = m_session.query_code(self.db, code_id)
+        logging.info("session:{}".format(session))
+        if session is None:
+            return self.write({"err":True, "msg":u"无效的请求"})
+
+        if session["code"] != validate_code:
+            return self.write({"err":True, "msg":u"验证码错误"})
+
         comment = {
             "content":content,
             "username":username,
@@ -130,13 +151,32 @@ class AddCommentHandler(FrontEndHandler):
         }
         new_comment = m_comment.add_one_comment(self.db, slug, comment)
         if new_comment is not None:
-            logging.info(new_comment)
+            m_session.remove_code(self.db, code_id)
             self.write({"err":False, "comment":new_comment})
         else:
             self.write({"err":True, "msg":u"无效的请求"})
 
     # def get(self):
     #     self.post()
+
+@route("/validae_code")
+class ValidateCodeHnadler(FrontEndHandler):
+
+    def get(self):
+        validate_iamge, strs = utils.gen_validate_code(width=120, height=34)
+        code_id = self.get_secure_cookie("codeid", None)
+        if code_id is None:
+            sid = m_session.add_validate_code(self.db, strs)
+        else:
+            sid = m_session.update_validate_code(self.db, code_id, strs)
+
+        self.set_secure_cookie("codeid", sid)
+
+        buf = StringIO()
+        validate_iamge.save(buf, format="PNG")
+        self.set_header("Content-type",  "image/png")
+        encoded_image = base64.b64encode(buf.getvalue())
+        self.write(encoded_image)
 
 
 @route("/(.*)")
