@@ -64,7 +64,6 @@ def gen_validate_code(width=100,
         except:
             font_path = os.path.dirname(__file__) + "/static/font"
             file = "{}/{}".format(font_path, font_type)
-            logging.info(file)
             font = ImageFont.truetype(file, font_size)
         strs_width, strs_height = font.getsize(new_strs)
         draw.text(((width - strs_width) / 2, (height - strs_height) / 2), new_strs,
