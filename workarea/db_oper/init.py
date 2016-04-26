@@ -13,7 +13,7 @@ from db_oper import db
 from models.session import COLL_SESSION, COLL_VALIDATE_CODE
 
 SESSION_EXPIRE_TIME = 3600 * 2
-SESSION_CODE_EXPIRE_TIME = 2
+SESSION_CODE_EXPIRE_TIME = 60 * 2
 
 def ensure_indexes(db):
     # try:
