@@ -58,7 +58,11 @@ def gen_validate_code(width=100,
 
     def draw_code():
         new_strs = " ".join(strs)
-        font = ImageFont.truetype(font_type, font_size)
+        try:
+            font = ImageFont.truetype(font_type, font_size)
+        except:
+            file = "/usr/share/fonts/Ayuthaya.ttf"
+            font = ImageFont.truetype(file, font_size)
         strs_width, strs_height = font.getsize(new_strs)
         draw.text(((width - strs_width) / 2, (height - strs_height) / 2), new_strs,
                     font=font, fill=fg_color)
