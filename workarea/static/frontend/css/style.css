@@ -161,6 +161,12 @@ a:focus {
     padding: 0!important;
 }
 
+@media(max-width:768px){
+    .search-section{
+        margin-left: 15px;
+    }
+}
+
 /********** search modal *********/
 .search-modal {
     height:100%;
