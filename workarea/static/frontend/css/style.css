@@ -1,5 +1,5 @@
 :focus { outline: none !important;}
-::-webkit-scrollbar { width: 0 !important;}
+::-webkit-scrollbar { width: 0px;}
 
 html{
 	height:100%;
@@ -139,6 +139,122 @@ a:focus {
     background: #555;
     border-radius: 4px;
 }
+
+.search-section {
+    border-bottom: 1px solid #F5F5F5;
+    width: 140px;
+    color: #bee;
+    margin-left: 30px;
+    background: #222!important;
+    border-radius: 0px!important;
+}
+
+.search-section:hover {
+    border-bottom: 1px solid #bee;
+}
+.search-section input{
+    display: inline;
+    color: #bee;
+    background: #222;
+    border: 0px;
+    width: 120px;
+    padding: 0!important;
+}
+
+/********** search modal *********/
+.search-modal {
+    height:100%;
+    display: none;
+    padding-left: 0px;
+    overflow:visible;
+}
+
+.search-modal .modal-dialog {
+    height: 80%;
+}
+
+
+.search-modal .modal-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.search-modal .modal-header {
+    border-bottom: 3px solid #e5e5e5;
+    min-height: 55px;
+}
+
+.search-modal .modal-header input{
+    width: 80%;
+    border: 0px;
+    font-size: 14px;
+    /*height: 40px;*/
+}
+
+.search-modal .modal-body {
+    padding: 30px;
+    min-height: 80%;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.search-modal .modal-body::-webkit-scrollbar {
+    width: 7px!important;
+}
+
+.search-modal .modal-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+    border-radius: 0px;
+}
+
+.search-modal .modal-body::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+
+
+.search-modal .modal-body .search-result{
+    margin: 5px 0px;
+    padding: 5px 0px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.search-modal .modal-body .search-result:last-child{
+    border-bottom-width:0;
+}
+
+.search-modal .modal-footer {
+    padding: 19px 20px 20px;
+    margin-top: 0px;
+    text-align: center;
+    /*border-top-width: 0px;*/
+    padding: 0;
+    height: 50px;
+    min-height: 50px;
+}
+
+.search-modal .pagination{
+    text-align: center;
+    border-top-width: 0;
+    width: auto;
+    /*margin: 3px 0;*/
+    margin: 0;
+    margin-top: -1px;
+}
+
+.search-modal .pagination li{
+    border: none;
+}
+
+@media (min-width: 768px){
+.modal-dialog {
+    margin: 100px auto;
+}
+}
+/************ logo **************/
 
 @media(max-width:768px){
     .logo {
